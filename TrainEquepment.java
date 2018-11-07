@@ -1,8 +1,5 @@
 package train;
 
-import train.railwayCarriages.Carriage;
-import train.railwayCarriages.Post;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

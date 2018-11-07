@@ -1,4 +1,4 @@
-package train.railwayCarriages;
+package train;
 
 import train.RailwayCarriage;
 
