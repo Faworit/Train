@@ -1,4 +1,4 @@
-package Train;
+package train;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +20,9 @@ public class MainTrain {
             String selection;
 
            while(power>0){
-               RailwayCarriage railwayCarriage = train.selectCarriage();
+               int partOfCarriageId = locomotive.getId();
+               int numberOfCarriage = passengerTrain.size();
+               RailwayCarriage railwayCarriage = train.selectCarriage(partOfCarriageId, numberOfCarriage);
                double weight = railwayCarriage.getWeight();
                power -= weight;
                if(power>0){
@@ -56,7 +58,9 @@ public class MainTrain {
             String selection;
 
             while(power>0){
-                RailwayCarriage railwayCarriage = train.selectFreight();
+                int partOfCarriageId = locomotive.getId();
+                int numberOfCarriage = freightTrain.size();
+                RailwayCarriage railwayCarriage = train.selectFreight(partOfCarriageId, numberOfCarriage);
                 double weight = railwayCarriage.getWeight();
                 power -= weight;
                 if(power>0){

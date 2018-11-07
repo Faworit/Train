@@ -1,16 +1,20 @@
-package Train;
+package train;
 
-import Train.Transport;
-
-public abstract class Locomotive extends Transport {
+public class Locomotive extends Transport {
     private double power;
-    private double weight;
+    private int id;
 
-    public double getWeight() {
-        return weight;
+    public Locomotive(double weight, int id, double power){
+        super(weight);
+        this.power = power;
+        this.id = id;
     }
 
     public double getPower() {
         return power;
+    }
+
+    public int getId() {
+        return id;
     }
 }

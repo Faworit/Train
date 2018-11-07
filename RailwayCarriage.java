@@ -1,31 +1,19 @@
-package Train;
-
-import Train.Transport;
+package train;
 
 public abstract class RailwayCarriage extends Transport {
-    private double weidth;
-    private double length;
-    private double weight;
-    private double height;
-    private final String TYPE = "Passenger";
 
-    public double getWeidth() {
-        return weidth;
-    }
+    private static final String TYPE = "railway";
+    private static double railwayGauge;
 
-    public double getLength() {
-        return length;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public double getHeight() {
-        return height;
+    public RailwayCarriage(double weight){
+        super(weight);
     }
 
     public String getTYPE() {
         return TYPE;
+    }
+
+    public static void setRailwayGauge(double railwayGauge) {
+        RailwayCarriage.railwayGauge = railwayGauge;
     }
 }
