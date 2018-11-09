@@ -33,7 +33,7 @@ public class TrainEquepment {
         return digit;
     }
 
-    public String typeOfTrain() throws IOException {
+    public String selectTypeOfTrain() throws IOException {
         String type;
         int numberOfTypeTrain;
         do {
@@ -69,24 +69,6 @@ public class TrainEquepment {
 
         Locomotive locomotive;
         if(num==1){
-            locomotive = creator(1);
-        }
-        else if(num==2){
-            locomotive = creator(2);
-        }
-        else if(num==3){
-            locomotive = creator(3);
-        }
-        else{
-            locomotive = creator(4);
-        }
-        return locomotive;
-    }
-
-    private Locomotive creator(int num){
-
-        Locomotive locomotive;
-        if(num==1){
             locomotive = new Locomotive(188, 1, 3524);
         }
         else if(num==2){
@@ -99,12 +81,14 @@ public class TrainEquepment {
             locomotive = new Locomotive(81,4,260);
         }
         return locomotive;
-
     }
 
+
     public Carriage selectCarriage(int idOfLoco, int numberOfCarriage) throws IOException {
-        int num;
+        int numOfType;
         int id;
+        String typeCarriage;
+        Carriage carriage;
         TypeCoach[] type = TypeCoach.values();
 
         do {
@@ -112,40 +96,38 @@ public class TrainEquepment {
             for( int i = 0; i<type.length; i++ ){
                 System.out.println((i+1) + ". " + type[i].getType());
             }
-            num = isDigit();
-            if(!(num > 0 && num <type.length )){
+            numOfType = isDigit();
+            if(!(numOfType > 0 && numOfType <type.length )){
                 System.out.println("You entered not correct data");
             }
         }
-        while(!(num > 0 && num <type.length ));
-        id = idOfCarriage(idOfLoco, num, numberOfCarriage);
-        Carriage carriage;
-        if(num==1){
+        while(!(numOfType > 0 && numOfType <type.length ));
+        id = idOfCarriage(idOfLoco, numOfType, numberOfCarriage);
+        if(type[numOfType].getType().equals("Coupe")){
             TypeCoach coupe = TypeCoach.COUPE;
-            String typeCarriage = coupe.getType();
+            typeCarriage = coupe.getType();
             carriage = new Carriage(typeCarriage, id, 36, 96);
-        }
-        else if(num==2){
-            TypeCoach econom = TypeCoach.ECONOM;
-            String typeCarriage = econom.getType();
-            carriage = new Carriage(typeCarriage, id, 56, 105);
-        }
-        else if(num==3){
-            TypeCoach restourant = TypeCoach.RESTOURANT;
-            String typeCarriage = restourant.getType();
-            carriage = new Carriage(typeCarriage, id, 32, 88);
-        }
-        else{
-            TypeCoach post = TypeCoach.POST;
-            String typeCarriage = post.getType();
-            carriage = new Carriage(typeCarriage, id, 72);
+        }   else if(type[numOfType].getType().equals("Econom")){
+                TypeCoach econom = TypeCoach.ECONOM;
+                typeCarriage = econom.getType();
+                carriage = new Carriage(typeCarriage, id, 56, 105);
+        }   else if(type[numOfType].getType().equals("Restaurant")){
+                TypeCoach restourant = TypeCoach.RESTOURANT;
+                typeCarriage = restourant.getType();
+                carriage = new Carriage(typeCarriage, id, 32, 88);
+        }   else{
+                TypeCoach post = TypeCoach.POST;
+                typeCarriage = post.getType();
+                carriage = new Carriage(typeCarriage, id, 72);
         }
         return carriage;
     }
 
     public RailwayCarriage selectFreight(int idOfLoco, int numberOfCarriage) throws IOException {
-        int num;
+        int numOfType;
         int id;
+        String typeCarriage;
+        Carriage carriage;
         TypeFreightCarriage[] type = TypeFreightCarriage.values();
 
         do {
@@ -153,29 +135,27 @@ public class TrainEquepment {
             for( int i = 0; i<type.length; i++ ){
                 System.out.println((i+1) + ". " + type[i].getType());
             }
-            num = isDigit();
-            if(!(num > 0 && num <= 4)){
+            numOfType = isDigit();
+            if(!(numOfType > 0 && numOfType <= 4)){
                 System.out.println("You entered not correct data");
             }
         }
-        while(!(num > 0 && num <= 4));
-        id = idOfCarriage(idOfLoco, num, numberOfCarriage);
-        Carriage carriage;
+        while(!(numOfType > 0 && numOfType <= 4));
+        id = idOfCarriage(idOfLoco, numOfType, numberOfCarriage);
 
-        if(num==1){
+
+        if (type[numOfType].getType().equals("Cistern")) {
             TypeFreightCarriage cistern = TypeFreightCarriage.CISTERN;
-            String typeCarriage = cistern.getType();
+            typeCarriage = cistern.getType();
             carriage = new Carriage(typeCarriage, id, 78.5);
-        }
-        else if(num==2){
-            TypeFreightCarriage container = TypeFreightCarriage.CONTAINER;
-            String typeCarriage = container.getType();
-            carriage = new Carriage(typeCarriage, id, 70);
-        }
-        else {
-            TypeFreightCarriage lorry = TypeFreightCarriage.LORRY;
-            String typeCarriage = lorry.getType();
-            carriage = new Carriage(typeCarriage, id, 80);
+        }   else if(type[numOfType].getType().equals("Container")){
+                TypeFreightCarriage container = TypeFreightCarriage.CONTAINER;
+                typeCarriage = container.getType();
+                carriage = new Carriage(typeCarriage, id, 70);
+        }   else {
+                TypeFreightCarriage lorry = TypeFreightCarriage.LORRY;
+                typeCarriage = lorry.getType();
+                carriage = new Carriage(typeCarriage, id, 80);
         }
 
         return carriage;

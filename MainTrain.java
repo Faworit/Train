@@ -10,20 +10,24 @@ public class MainTrain {
     public static void main(String[] args) throws IOException {
         BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
         TrainEquepment train = new TrainEquepment();
-        String typeOfTrain = train.typeOfTrain();
+        String typeOfTrain = train.selectTypeOfTrain();
         if(typeOfTrain.equals("passenger")){
             double power;
+            double weight;
+            int count;
+            int partOfCarriageId;
+            int numberOfCarriage;
+            String selection;
             ArrayList<Transport> passengerTrain = new ArrayList<>();
             Locomotive locomotive = train.selectLocomotive();
             power = locomotive.getPower() - locomotive.getWeight();
             passengerTrain.add(locomotive);
-            String selection;
 
            while(power>0){
-               int partOfCarriageId = locomotive.getId();
-               int numberOfCarriage = passengerTrain.size();
+               partOfCarriageId = locomotive.getId();
+               numberOfCarriage = passengerTrain.size();
                RailwayCarriage railwayCarriage = train.selectCarriage(partOfCarriageId, numberOfCarriage);
-               double weight = railwayCarriage.getWeight();
+               weight = railwayCarriage.getWeight();
                power -= weight;
                if(power>0){
                    passengerTrain.add(railwayCarriage);
@@ -44,24 +48,29 @@ public class MainTrain {
                    break;
                }
            }
-            System.out.println("Full train");
-           int count = passengerTrain.size();
-            System.out.println(count);
+           rd.close();
+           System.out.println("Full train");
+           count = passengerTrain.size();
+           System.out.println(count);
 
         }
         else{
             double power;
+            double weight;
+            int count;
+            int partOfCarriageId;
+            int numberOfCarriage;
+            String selection;
             ArrayList<Transport> freightTrain = new ArrayList<>();
             Locomotive locomotive = train.selectLocomotive();
             power = locomotive.getPower() - locomotive.getWeight();
             freightTrain.add(locomotive);
-            String selection;
 
             while(power>0){
-                int partOfCarriageId = locomotive.getId();
-                int numberOfCarriage = freightTrain.size();
+                partOfCarriageId = locomotive.getId();
+                numberOfCarriage = freightTrain.size();
                 RailwayCarriage railwayCarriage = train.selectFreight(partOfCarriageId, numberOfCarriage);
-                double weight = railwayCarriage.getWeight();
+                weight = railwayCarriage.getWeight();
                 power -= weight;
                 if(power>0){
                     freightTrain.add(railwayCarriage);
@@ -81,8 +90,9 @@ public class MainTrain {
                     break;
                 }
             }
+            rd.close();
             System.out.println("Full train");
-            int count = freightTrain.size();
+            count = freightTrain.size();
             System.out.println("number of railways in train " +count);
 
         }
